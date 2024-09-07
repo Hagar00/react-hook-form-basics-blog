@@ -14,3 +14,54 @@ The `useForm` Hook returns an object containing a few key properties, such as `r
 
 ```jsx
 const { register, handleSubmit } = useForm();
+
+## section 1 
+•	Register: This method registers an input field with React Hook Form, making it available for validation and tracking changes.
+
+```jsx
+<input type="text" name="firstName" {...register('firstName')} />
+
+Note that each input must have a unique name property.
+•	**HandleSubmit: This method is used to handle form submission. It takes two functions as arguments:
+1.	The first function is called when form validation is successful.
+2.	The second function is called when validation fails.
+
+```jsx
+const onFormSubmit = (data) => console.log(data);
+const onErrors = (errors) => console.error(errors);
+
+<form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
+  {/* ... */}
+</form>
+
+## Basic Example
+
+```jsx
+import React from "react";
+import { useForm } from "react-hook-form";
+
+const RegisterForm = () => {
+  const { register, handleSubmit } = useForm();
+  const handleRegistration = (data) => console.log(data);
+
+  return (
+    <form onSubmit={handleSubmit(handleRegistration)}>
+      <div>
+        <label>Name</label>
+        <input name="name" {...register('name')} />
+      </div>
+      <div>
+        <label>Email</label>
+        <input type="email" name="email" {...register('email')} />
+      </div>
+      <div>
+        <label>Password</label>
+        <input type="password" name="password" {...register('password')} />
+      </div>
+      <button>Submit</button>
+    </form>
+  );
+};
+export default RegisterForm;
+
+
